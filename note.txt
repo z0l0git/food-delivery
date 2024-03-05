@@ -1,0 +1,1 @@
+When using react hooks MUST use "use client" on top. Because they are client side modules and wont render on server.
