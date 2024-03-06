@@ -7,11 +7,13 @@ export const createUserQuery = async (req: Request) => {
     const { name, email, phone, password } = req.body;
     console.log(req.body);
 
+    const asd = await passwordHash(password);
+
     const user = await UserModel.create({
       name,
       email,
       phone,
-      password: passwordHash(password),
+      password: asd,
     });
 
     return user;
