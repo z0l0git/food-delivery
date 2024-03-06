@@ -13,6 +13,7 @@ export const createUserQuery = async (req: Request) => {
       phone,
       password: passwordHash(password),
     });
+
     return user;
   } catch (error: any) {
     console.log(error.message);
