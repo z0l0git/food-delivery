@@ -7,3 +7,4 @@ mongodb+srv://zolo:Xc7oebHX72sbzsrx@zolo.jjjfjw1.mongodb.net/
 mongodb+srv://zolo:Xc7oebHX72sbzsrx@zolo.jjjfjw1.mongodb.net/
 
 mongodb+srv://zolo:<password>@zolo.jjjfjw1.mongodb.net/
+ucms gdmg dgvo kfzq
