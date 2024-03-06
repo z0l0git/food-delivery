@@ -1,5 +1,7 @@
 import React from "react";
+import { Footer } from "../components/footer";
 import { Header } from "../components/header";
+import { SignupBox } from "@/components/signup/SignupBox";
 
 const page = () => {
   const str: string = "hello";
@@ -16,8 +18,13 @@ const page = () => {
 
   return (
     <div>
-      <Header />
-      <div>Hello</div>
+      <div className="px-[20px] md:px-[120px]">
+        <Header />
+        <div className="mt-5 flex flex-col items-center justify-center">
+          <SignupBox />
+        </div>
+      </div>
+      <Footer />
     </div>
   );
 };
