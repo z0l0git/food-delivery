@@ -1,4 +1,5 @@
 import React from "react";
+import { Header } from "../components/header";
 
 const page = () => {
   const str: string = "hello";
@@ -15,7 +16,8 @@ const page = () => {
 
   return (
     <div>
-      <div>page</div>
+      <Header />
+      <div>Hello</div>
     </div>
   );
 };
