@@ -15,7 +15,7 @@ export const Footer = () => {
     "Нууцлалын бодлого",
   ];
   return (
-    <div className="relative bottom-0 left-0 bg-[url('/Footer.png')] w-screen h-[545px] px-[20px] md:px-[120px] flex flex-col justify-center items-center text-white gap-[45px] px-[100px]">
+    <div className="relative bottom-0 left-0 bg-[url('/Footer.png')] w-screen h-[545px] md:px-[120px] flex flex-col justify-center items-center text-white gap-[45px] px-[100px]">
       <div className="flex items-center gap-2">
         <Image src="/pineconeWhite.png" width={41} height={41} alt="logo" />
         <p className="text-[20px] font-[700]">Food Delivery</p>

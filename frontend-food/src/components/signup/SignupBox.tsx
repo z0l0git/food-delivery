@@ -1,13 +1,15 @@
 "use client";
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, use } from "react";
 import { InputComponent } from "./InputComponent";
 import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { lime } from "@mui/material/colors";
 
 export const SignupBox = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
+  const [checkBox, setCheckBox] = useState(false);
   const [rePassword, setRePassword] = useState("");
   const [data, setData] = useState({
     name: "",
@@ -15,6 +17,7 @@ export const SignupBox = () => {
     phone: "",
     password: "",
   });
+  const [buttonColor, setButtonColor] = useState(false);
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -23,9 +26,16 @@ export const SignupBox = () => {
     setShowPassword2(!showPassword2);
   };
 
+  useEffect(() => {
+    const isEmpty = Object.values(data).every((value) => !value);
+    setButtonColor(!isEmpty);
+  }, [data]);
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
+
     setData({ ...data, [name]: value });
+    console.log(data);
   };
   const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -78,7 +88,14 @@ export const SignupBox = () => {
       </div>
       <div className="w-full flex flex-col gap-4">
         <div className="flex items-center gap-2 mt-4 w-full">
-          <Checkbox color="secondary" />
+          <Checkbox
+            color="secondary"
+            checked={checkBox}
+            onChange={(e) => {
+              console.log(e.target.checked);
+              setCheckBox(!checkBox);
+            }}
+          />
           <span className="text-sm">Үйлчилгээний нөхцөл зөвшөөрөх</span>
         </div>
         <Button
@@ -86,6 +103,10 @@ export const SignupBox = () => {
           fullWidth
           size="large"
           className="text-slate-400 shadow-none h-[56px] hover:bg-lime-500 hover:text-white"
+          style={{
+            backgroundColor: buttonColor ? "rgb(132 204 22)" : "",
+            color: buttonColor ? "white" : "gray",
+          }}
         >
           Бүртгүүлэх
         </Button>

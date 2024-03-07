@@ -1,6 +1,6 @@
 import React from "react";
-import { Footer } from "../components/footer";
-import { Header } from "../components/header";
+import { Footer } from "../../components/footer";
+import { Header } from "../../components/header";
 import { SignupBox } from "@/components/signup/SignupBox";
 
 const page = () => {
@@ -16,7 +16,11 @@ const page = () => {
   const arr4: (string | number)[] = ["1", "2", "3", 4];
   const func: Function = () => {};
 
-  return <div>home</div>;
+  return (
+    <div className="mt-5 flex flex-col items-center justify-center">
+      <SignupBox />
+    </div>
+  );
 };
 
 export default page;
