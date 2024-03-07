@@ -20,7 +20,7 @@ export const LoginBox = () => {
     console.log(data);
   };
   return (
-    <div className="w-[448px] p-[32px] flex flex-col items-center gap-6 justify-center">
+    <div className="w-[448px] p-[32px] flex flex-col items-center gap-6 justify-center rounded-xl">
       <h1 className="text-2xl font-bold">Бүртгүүлэх</h1>
       <div className="w-full flex flex-col gap-6">
         <InputComponent
@@ -57,7 +57,7 @@ export const LoginBox = () => {
           variant="contained"
           fullWidth
           size="large"
-          className="text-slate-400 shadow-none h-[56px] border-lime-500 border-4 hover:bg-transparent hover:text-white"
+          className=" text-slate-400 h-[56px] "
         >
           Бүртгүүлэх
         </Button>
