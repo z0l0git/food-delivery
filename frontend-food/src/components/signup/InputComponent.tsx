@@ -24,7 +24,14 @@ export const InputComponent = (props: any) => {
         type={type}
         fullWidth
         placeholder={placeholder}
-        InputProps={{ disableUnderline: true }}
+        InputProps={{
+          disableUnderline: true,
+          style: {
+            paddingBottom: "10px",
+            borderRadius: "6px",
+          },
+        }}
+        className=""
         name={name}
         onChange={handleChange}
       />
