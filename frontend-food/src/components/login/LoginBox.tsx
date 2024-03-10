@@ -79,10 +79,10 @@ export const LoginBox = (props: any) => {
           variant="contained"
           fullWidth
           size="large"
-          className="text-slate-400 shadow-none h-[56px] hover:bg-lime-500 hover:text-white"
+          className="text-slate-400 shadow-none h-[56px] hover:bg-[rgba(24,186,81,255)] hover:text-white"
           disabled={!buttonColor}
           style={{
-            backgroundColor: buttonColor ? "rgb(132 204 22)" : "",
+            backgroundColor: buttonColor ? "rgba(24,186,81,255)" : "",
             color: buttonColor ? "white" : "gray",
           }}
         >
