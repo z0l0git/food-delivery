@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
 import { Footer } from "../components/footer";
 import { Header } from "../components/header";
+import { Roboto } from "next/font/google";
 
 import "./globals.css";
+
+const roboto = Roboto({
+  weight: ["300", "400", "500", "700"],
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Food Delivery",
@@ -17,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div>
+        <div className={roboto.className}>
           <div className="px-[20px] md:px-[120px]">
             <Header />
             {children}

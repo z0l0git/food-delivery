@@ -10,6 +10,11 @@ export const PassAuth = () => {
     const { value } = event.target;
     setEmail(value);
   };
+  console.log(email);
+
+  const handleNext = () => {
+    console.log("nexts");
+  };
   return (
     <div className="flex flex-col gap-[60px] w-[384px]">
       <InputComponent
@@ -20,15 +25,17 @@ export const PassAuth = () => {
       />
       <Button
         variant="contained"
+        onClick={handleNext}
+        disabled={email.length > 0 ? false : true}
         fullWidth
         size="large"
-        className="text-slate-400 shadow-none h-[56px] hover:bg-[rgba(24,186,81,255)] hover:text-white"
+        className="text-slate-400 shadow-none h-[56px] "
         style={{
           backgroundColor: email.length > 0 ? "rgba(24,186,81)" : "",
           color: email.length > 0 ? "white" : "",
         }}
       >
-        Үргэлжлүүлэх
+        Үргэлжлүүлэх s
       </Button>
     </div>
   );
