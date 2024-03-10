@@ -4,11 +4,15 @@ import { InputComponent } from "./InputComponent";
 import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
 import { useState, useEffect } from "react";
-import { lime } from "@mui/material/colors";
+import axios from "axios";
+
+//Signup form
 
 export const SignupBox = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
+  const [errorPassword, setErrorPassword] = useState("");
+  const [error, setError] = useState(false);
   const [checkBox, setCheckBox] = useState(false);
   const [rePassword, setRePassword] = useState("");
   const [data, setData] = useState({
@@ -26,20 +30,53 @@ export const SignupBox = () => {
     setShowPassword2(!showPassword2);
   };
 
+  //Checks if the form is filled
   useEffect(() => {
-    const isEmpty = Object.values(data).every((value) => !value);
-    setButtonColor(!isEmpty);
-  }, [data]);
+    if (
+      !data.name ||
+      !data.email ||
+      !data.phone ||
+      !data.password ||
+      !rePassword ||
+      !checkBox
+    ) {
+      setButtonColor(false);
+      return;
+    }
 
+    setButtonColor(true);
+  }, [data, rePassword, checkBox]);
+
+  useEffect(() => {}, [data.password, rePassword]);
+
+  //Stores the data entered by the user
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-
     setData({ ...data, [name]: value });
     console.log(data);
   };
+
+  //Stores the second password entered by the user
   const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     setRePassword(value);
+  };
+
+  //Submits the form data to the server
+  const handleSubmit = async () => {
+    if (data.password !== rePassword) {
+      setError(true);
+      setErrorPassword("Passwords do not match");
+    } else {
+      setError(false);
+      setErrorPassword("");
+      try {
+        await axios.post("http://localhost:4000/user/signup", data);
+        console.log("success");
+      } catch (err) {
+        console.log(err);
+      }
+    }
   };
 
   return (
@@ -85,12 +122,20 @@ export const SignupBox = () => {
           handleShowPassword={handleShowPassword2}
           handleChange={handlePasswordChange}
         />
+        {error && <p className="text-red-500 text-sm">{errorPassword}</p>}
       </div>
       <div className="w-full flex flex-col gap-4">
         <div className="flex items-center gap-2 mt-4 w-full">
           <Checkbox
-            color="secondary"
             checked={checkBox}
+            sx={[
+              {
+                color: "#000",
+                "&.Mui-checked": {
+                  color: "#000",
+                },
+              },
+            ]}
             onChange={(e) => {
               console.log(e.target.checked);
               setCheckBox(!checkBox);
@@ -99,6 +144,8 @@ export const SignupBox = () => {
           <span className="text-sm">Үйлчилгээний нөхцөл зөвшөөрөх</span>
         </div>
         <Button
+          disabled={!buttonColor}
+          onClick={handleSubmit}
           variant="contained"
           fullWidth
           size="large"

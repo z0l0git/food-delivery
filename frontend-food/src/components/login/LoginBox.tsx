@@ -1,10 +1,13 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import { InputComponent } from "../signup/InputComponent";
 import { Button } from "@mui/material";
+import axios from "axios";
 
-export const LoginBox = () => {
+export const LoginBox = (props: any) => {
+  const { indexNum } = props;
+  const [buttonColor, setButtonColor] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -19,8 +22,35 @@ export const LoginBox = () => {
     setData({ ...data, [name]: value });
     console.log(data);
   };
+
+  useEffect(() => {
+    if (data.email && data.password) {
+      setButtonColor(true);
+    } else {
+      setButtonColor(false);
+    }
+  }, [data]);
+
+  const handleSubmit = async () => {
+    console.log("clicked");
+
+    try {
+      const { data: response } = await axios.post(
+        "http://localhost:4000/user/login",
+        data
+      );
+      localStorage.setItem("token", response);
+
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
-    <div className="w-[448px] p-[32px] flex flex-col items-center gap-6 justify-center rounded-xl">
+    <div
+      className="w-[448px] p-[32px] flex flex-col items-center gap-6 justify-center rounded-xl bg-gray-100"
+      style={{ zIndex: indexNum }}
+    >
       <h1 className="text-2xl font-bold">Бүртгүүлэх</h1>
       <div className="w-full flex flex-col gap-6">
         <InputComponent
@@ -40,24 +70,34 @@ export const LoginBox = () => {
             handleShowPassword={handleShowPassword}
             handleChange={handleChange}
           />
-          <p>Нууц үг сэргээх</p>
+          <p className="cursor-pointer">Нууц үг сэргээх</p>
         </div>
       </div>
       <div className="w-full flex flex-col gap-4 items-center">
         <Button
+          onClick={handleSubmit}
           variant="contained"
           fullWidth
           size="large"
           className="text-slate-400 shadow-none h-[56px] hover:bg-lime-500 hover:text-white"
+          disabled={!buttonColor}
+          style={{
+            backgroundColor: buttonColor ? "rgb(132 204 22)" : "",
+            color: buttonColor ? "white" : "gray",
+          }}
         >
           Нэвтрэх
         </Button>
         <p>Эсвэл</p>
         <Button
-          variant="contained"
+          variant="outlined"
           fullWidth
           size="large"
-          className=" text-slate-400 h-[56px] "
+          color="success"
+          className=" text-black h-[56px] "
+          onClick={() => {
+            window.location.href = "/signup";
+          }}
         >
           Бүртгүүлэх
         </Button>
