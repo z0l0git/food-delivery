@@ -24,6 +24,7 @@ export const PassAuth = () => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setData({ ...data, [name]: value });
+
     console.log(data);
   };
 
@@ -72,6 +73,7 @@ export const PassAuth = () => {
         otp: otp,
       });
       if (data === "success") {
+        setError("");
         setPageCount(pageCount + 1);
       } else {
         setError("Invalid Code");
@@ -81,6 +83,11 @@ export const PassAuth = () => {
         setError("passwords don't match");
         setPageCount(2);
       } else {
+        await axios.post("http://localhost:4000/user/password", {
+          email: email,
+          password: data.password,
+        });
+        window.location.href = "/login";
         console.log("matched");
       }
     }

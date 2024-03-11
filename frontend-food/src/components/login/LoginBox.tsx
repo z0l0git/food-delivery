@@ -45,10 +45,10 @@ export const LoginBox = (props: any) => {
   };
   return (
     <div
-      className="w-[448px] p-[32px] flex flex-col items-center gap-6 justify-center rounded-xl bg-gray-100"
+      className="w-[448px] p-[32px] flex flex-col items-center gap-6 justify-center rounded-xl bg-white"
       style={{ zIndex: indexNum }}
     >
-      <h1 className="text-2xl font-bold">Бүртгүүлэх</h1>
+      <h1 className="text-2xl font-bold">Нэвтрэх</h1>
       <div className="w-full flex flex-col gap-6">
         <InputComponent
           label="И-мэйл"
@@ -67,7 +67,14 @@ export const LoginBox = (props: any) => {
             handleShowPassword={handleShowPassword}
             handleChange={handleChange}
           />
-          <p className="cursor-pointer">Нууц үг сэргээх</p>
+          <p
+            className="cursor-pointer"
+            onClick={() => {
+              window.location.href = "/passwordReset";
+            }}
+          >
+            Нууц үг сэргээх
+          </p>
         </div>
       </div>
       <div className="w-full flex flex-col gap-4 items-center">
