@@ -1,4 +1,4 @@
-import { PassAuth } from "@/components/passwordReset/passAuth";
+import { PassAuth } from "@/components/passwordReset/PassAuth";
 import React from "react";
 
 const page = () => {

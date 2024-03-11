@@ -43,11 +43,8 @@ export const SignupBox = () => {
       setButtonColor(false);
       return;
     }
-
     setButtonColor(true);
   }, [data, rePassword, checkBox]);
-
-  useEffect(() => {}, [data.password, rePassword]);
 
   //Stores the data entered by the user
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
