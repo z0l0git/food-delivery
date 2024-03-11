@@ -1,4 +1,3 @@
-import { tokenGenerate } from "../../utils";
 import { Request, Response } from "express";
 import { UserModel } from "../../models";
 import NodeMailer from "nodemailer";
@@ -14,15 +13,15 @@ export const generateToken = async (req: Request) => {
     const user = await getUserByEmail(email);
 
     if (!user) {
-      throw new Error("User not found");
+      return "user not found";
     }
     const randomNum = Math.floor(1000 + Math.random() * 9000);
-    const token = tokenGenerate(randomNum.toString());
+
     const transporter = NodeMailer.createTransport({
       service: "Gmail",
       host: "smtp.gmail.com",
       port: 465,
-      secure: false, // Use `true` for port 465, `false` for all other ports
+      secure: true, // Use `true` for port 465, `false` for all other ports
       auth: {
         user: "zolbayar.in@gmail.com",
         pass: "ucmsgdmgdgvokfzq",
@@ -43,7 +42,12 @@ export const generateToken = async (req: Request) => {
       }
     });
 
-    return token;
+    const updateOTP = await UserModel.updateOne(
+      { email: user.email },
+      { $set: { otp: randomNum } }
+    );
+
+    return updateOTP;
   } catch (err) {
     console.log(err);
   }

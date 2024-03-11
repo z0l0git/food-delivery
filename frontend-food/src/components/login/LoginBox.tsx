@@ -32,14 +32,11 @@ export const LoginBox = (props: any) => {
   }, [data]);
 
   const handleSubmit = async () => {
-    console.log("clicked");
-
     try {
       const { data: response } = await axios.post(
         "http://localhost:4000/user/login",
         data
       );
-      localStorage.setItem("token", response);
 
       console.log(response);
     } catch (error) {
