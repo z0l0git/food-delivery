@@ -6,7 +6,7 @@ import Divider from "@mui/material/Divider";
 import Image from "next/image";
 
 const Root = styled("div")(({ theme }) => ({
-  width: "25%",
+  width: "386px",
   ...theme.typography.body2,
   color: "white",
   "& > :not(style) ~ :not(style)": {

@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Stack, Typography } from "@mui/material";
+import { Stack } from "@mui/material";
 import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
 import QueryBuilderOutlinedIcon from "@mui/icons-material/QueryBuilderOutlined";
 import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
@@ -52,8 +52,8 @@ export const HomeCards = () => {
       spacing={2}
       sx={{
         paddingX: "120px",
-
         justifyContent: "space-between",
+        height: "100%",
       }}
     >
       {cardArray.map((card, index) => (

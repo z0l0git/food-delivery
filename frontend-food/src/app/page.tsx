@@ -1,4 +1,5 @@
 import { HomeCards } from "@/components/home/HomeCards";
+import { HomeFoodRows } from "@/components/home/HomeFoodRows";
 import { HomeHeader } from "@/components/home/HomeHeader";
 import { Box } from "@mui/material";
 import React from "react";
@@ -20,6 +21,7 @@ const page = () => {
     <Box sx={{ display: "flex", flexDirection: "column", gap: "80px" }}>
       <HomeHeader />
       <HomeCards />
+      <HomeFoodRows />
     </Box>
   );
 };

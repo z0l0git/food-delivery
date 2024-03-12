@@ -10,7 +10,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 connectDb();
+
 dotenv.config();
+
 app.use(userRouter);
 
 app.listen(4000, () => {

@@ -4,6 +4,7 @@ import { Header } from "../components/header";
 import { Roboto } from "next/font/google";
 
 import "./globals.css";
+import { DataProvider } from "@/components/context/DataContext";
 
 const roboto = Roboto({
   weight: ["300", "400", "500", "700"],
@@ -23,13 +24,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className={roboto.className}>
-          <div className="px-[20px] md:px-[120px]">
-            <Header />
+        <DataProvider>
+          <div className={roboto.className}>
+            <div className="px-[20px] md:px-[120px]">
+              <Header />
+            </div>
+            {children}
+            <Footer />
           </div>
-          {children}
-          <Footer />
-        </div>
+        </DataProvider>
       </body>
     </html>
   );

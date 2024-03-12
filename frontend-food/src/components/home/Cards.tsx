@@ -8,17 +8,27 @@ export const Cards = (props: any) => {
     <Card
       sx={{
         minWidth: 275,
-        boxShadow: "4px 4px 12px 0px #0000001A",
         borderRadius: "16px",
+        boxShadow:
+          "4px 4px 12px 0px #0000001A, 4px 4px 12px 0px #0000001A, 4px 4px 12px 0px #0000001A",
+        "&:hover": {
+          boxShadow: "0",
+          border: "1px solid #18BA51",
+        },
+        "&:focus": {
+          boxShadow: "0",
+          border: "1px solid #18BA51",
+        },
+        "&:active": {
+          boxShadow:
+            "4px 4px 12px 0px #0000001A, 4px 4px 12px 0px #0000001A, 4px 4px 12px 0px #0000001A",
+        },
       }}
     >
       <CardContent
         sx={{ display: "flex", flexDirection: "column", gap: "10px" }}
       >
         {icon}
-        {/* <AutoStoriesOutlinedIcon
-          style={{ color: "#18BA51", fontSize: 40, margin: "15px" }}
-        /> */}
         <Box>
           <Typography
             variant="body2"
@@ -26,7 +36,7 @@ export const Cards = (props: any) => {
           >
             {title}
           </Typography>
-          <Typography variant="body2" sx={{ fontSize: "14px" }}>
+          <Typography variant="body1" sx={{ fontSize: "14px" }}>
             {desc}
           </Typography>
         </Box>

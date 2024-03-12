@@ -18,11 +18,27 @@ export const Header = () => {
   return (
     <div className="flex justify-between items-center py-3 ">
       <div className="flex items=center gap-9 text-center">
-        <Image src="/pineconeLogo.png" alt="" width={41} height={41} />
+        <Image
+          src="/pineconeLogo.png"
+          alt=""
+          width={41}
+          height={41}
+          onClick={() => {
+            window.location.href = "/";
+          }}
+          className="cursor-pointer"
+        />
         <div className="flex items-center gap-9 text-[14px] font-[700] leading-4">
-          <p>НҮҮР</p>
-          <p>ХООЛНЫ ЦЭС</p>
-          <p>ХҮРГЭЛТИЙН БҮС</p>
+          <p
+            onClick={() => {
+              window.location.href = "/";
+            }}
+            className="cursor-pointer"
+          >
+            НҮҮР
+          </p>
+          <p className="cursor-pointer">ХООЛНЫ ЦЭС</p>
+          <p className="cursor-pointer">ХҮРГЭЛТИЙН БҮС</p>
         </div>
       </div>
       <div className="flex items-center gap-4">
