@@ -1,7 +1,5 @@
+import { HomeHeader } from "@/components/home/HomeHeader";
 import React from "react";
-import { Footer } from "../components/footer";
-import { Header } from "../components/header";
-import { SignupBox } from "@/components/signup/SignupBox";
 
 const page = () => {
   const str: string = "hello";
@@ -16,7 +14,7 @@ const page = () => {
   const arr4: (string | number)[] = ["1", "2", "3", 4];
   const func: Function = () => {};
 
-  return <div>home</div>;
+  return <HomeHeader />;
 };
 
 export default page;

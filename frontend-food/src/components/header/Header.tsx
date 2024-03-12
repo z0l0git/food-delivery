@@ -16,7 +16,7 @@ export const Header = () => {
     setModal(!modal);
   };
   return (
-    <div className="flex justify-between items-center py-3">
+    <div className="flex justify-between items-center py-3 ">
       <div className="flex items=center gap-9 text-center">
         <Image src="/pineconeLogo.png" alt="" width={41} height={41} />
         <div className="flex items-center gap-9 text-[14px] font-[700] leading-4">

@@ -15,13 +15,11 @@ export const updatePass = async (req: Request) => {
       return "user not found";
     }
     const hashed = await passwordHash(password);
-    console.log(hashed);
 
     const updatePass = await UserModel.updateOne(
       { email: user.email },
       { $set: { password: hashed } }
     );
-    console.log("shti");
 
     return updatePass;
   } catch (error) {

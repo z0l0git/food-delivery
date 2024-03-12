@@ -26,8 +26,8 @@ export default function RootLayout({
         <div className={roboto.className}>
           <div className="px-[20px] md:px-[120px]">
             <Header />
-            {children}
           </div>
+          {children}
           <Footer />
         </div>
       </body>

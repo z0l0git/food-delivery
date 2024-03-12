@@ -32,7 +32,7 @@ export const generateToken = async (req: Request) => {
       to: user.email,
       subject: "Password Reset Verification Code from Food-Delivery by Zolo",
       text: `Verification for ${user.email}
-      Your code is: ${randomNum}`,
+             Your code is: ${randomNum}`,
     };
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
