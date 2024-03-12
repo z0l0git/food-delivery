@@ -1,14 +1,14 @@
 "use client";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, makeStyles } from "@mui/material";
 import React from "react";
 import { styled } from "@mui/material/styles";
 import Divider from "@mui/material/Divider";
-import Chip from "@mui/material/Chip";
+import Image from "next/image";
 
 const Root = styled("div")(({ theme }) => ({
-  width: "100%",
+  width: "25%",
   ...theme.typography.body2,
-  color: theme.palette.text.secondary,
+  color: "white",
   "& > :not(style) ~ :not(style)": {
     marginTop: theme.spacing(2),
   },
@@ -26,17 +26,27 @@ export const HomeHeader = () => {
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         marginBottom: "20px",
+        paddingY: "160px",
+        paddingX: "120px",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
       }}
     >
       <Root>
-        <Typography variant="h1" component="h2">
+        <Typography variant="h2" component="h2" sx={{ fontWeight: "bolder" }}>
           Pinecone Food delivery
         </Typography>
-        <Divider></Divider>
-        <Typography>
+        <Divider
+          sx={{
+            backgroundColor: "white",
+          }}
+        ></Divider>
+        <Typography sx={{ fontSize: "22px", letterSpacing: "1%" }}>
           Horem ipsum dolor sit amet, consectetur adipiscing elit.
         </Typography>
       </Root>
+      <Image src={"/headFood.png"} alt="img" width={800} height={770} />
     </Box>
   );
 };

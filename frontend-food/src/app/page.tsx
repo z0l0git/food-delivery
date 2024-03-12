@@ -1,4 +1,6 @@
+import { HomeCards } from "@/components/home/HomeCards";
 import { HomeHeader } from "@/components/home/HomeHeader";
+import { Box } from "@mui/material";
 import React from "react";
 
 const page = () => {
@@ -14,7 +16,12 @@ const page = () => {
   const arr4: (string | number)[] = ["1", "2", "3", 4];
   const func: Function = () => {};
 
-  return <HomeHeader />;
+  return (
+    <Box sx={{ display: "flex", flexDirection: "column", gap: "80px" }}>
+      <HomeHeader />
+      <HomeCards />
+    </Box>
+  );
 };
 
 export default page;
