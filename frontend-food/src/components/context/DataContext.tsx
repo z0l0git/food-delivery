@@ -6,10 +6,6 @@ export const DataContext = createContext({});
 
 export const DataProvider = ({ children }: any) => {
   const { push } = useRouter();
-  const [userEmail, setUserEmail] = useState("");
-  const [userData, setUserData] = useState({});
-  const [userInput, setUserInput] = useState({});
-  const [recordInput, setRecordInput] = useState({});
 
   const accessToken =
     typeof window !== "undefined" && localStorage.getItem("token");
@@ -26,15 +22,15 @@ export const DataProvider = ({ children }: any) => {
               },
             }
           );
-          setUserData(data);
         } catch (error) {
-          push("/login");
+          console.log("eror from get logged in user");
         }
       };
 
       getloggedUser();
     } else {
-      push("/login");
+      // push("/login");
+      console.log("No");
     }
   }, [accessToken, push]);
 
