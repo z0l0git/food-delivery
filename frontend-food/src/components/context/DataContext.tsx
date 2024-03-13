@@ -56,7 +56,6 @@ export const DataProvider = ({ children }: any) => {
 
       getloggedUser();
     } else {
-      // push("/login");
       setIsLoggedIn(false);
       console.log("No");
     }

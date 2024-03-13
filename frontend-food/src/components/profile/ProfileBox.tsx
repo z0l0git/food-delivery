@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { ChangeEvent, useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import { DataContext } from "../context/DataContext";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
@@ -13,7 +13,40 @@ export const ProfileBox = () => {
   const { loggedInUserData } = useContext(DataContext);
   const [modal, setModal] = useState(false);
   const [edit, setEdit] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorMSG, setErrorMSG] = useState("");
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
 
+  useEffect(() => {
+    setData({
+      name: loggedInUserData.name,
+      email: loggedInUserData.email,
+      phone: loggedInUserData.phone,
+    });
+  }, []);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+
+    setData({ ...data, [name]: value });
+    console.log(data);
+  };
+
+  const handleSubmit = () => {
+    setError(false);
+    setErrorMSG("");
+    console.log(data);
+
+    if (!data.email || !data.name || !data.phone) {
+      setErrorMSG("Please Fill in All the Fields");
+      setError(true);
+      return;
+    }
+  };
   const handleModal = () => {
     setModal(!modal);
   };
@@ -49,9 +82,11 @@ export const ProfileBox = () => {
             <p className="text-[12px] text-[#888A99]">Таны нэр</p>
             <input
               type="text"
+              name="name"
               className={`bg-transparent w-full outline-none`}
-              onChange={() => {}}
-              value={loggedInUserData.name}
+              readOnly={edit}
+              onChange={handleChange}
+              defaultValue={loggedInUserData.name}
             />
           </div>
           <div>
@@ -71,8 +106,10 @@ export const ProfileBox = () => {
             <input
               type="text"
               className="bg-transparent w-full outline-none"
-              onChange={() => {}}
-              value={loggedInUserData.phone}
+              readOnly={edit}
+              onChange={handleChange}
+              name="phone"
+              defaultValue={loggedInUserData.phone}
             />
           </div>
           <div>
@@ -92,8 +129,10 @@ export const ProfileBox = () => {
             <input
               type="text"
               className="bg-transparent w-full outline-none"
-              onChange={() => {}}
-              value={loggedInUserData.email}
+              readOnly={edit}
+              name="email"
+              onChange={handleChange}
+              defaultValue={loggedInUserData.email}
             />
           </div>
           <div>
@@ -105,7 +144,7 @@ export const ProfileBox = () => {
           </div>
         </div>
       </div>
-      {edit ? (
+      {!edit ? (
         <div className="px-[20px] flex flex-col gap-[30px]">
           <div className="flex items-center gap-[5px] cursor-pointer w-fit">
             <div className="bg-white border-[#EEEFF2] border-[1px] w-[48px] h-[48px] flex items-center justify-center rounded-full">
@@ -126,7 +165,7 @@ export const ProfileBox = () => {
       ) : (
         <div
           className="bg-[#18BA51] w-full h-[48px] rounded-[4px] flex items-center justify-center text-white cursor-pointer"
-          onClick={handleEdit}
+          onClick={handleSubmit}
         >
           Хадгалах
         </div>
