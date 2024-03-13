@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Image from "next/image";
 import InputAdornment from "@mui/material/InputAdornment";
 import Button from "@mui/material/Button";
@@ -8,9 +8,11 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
 import { LoginModal } from "../login/LoginModal";
+import { DataContext } from "../context/DataContext";
 
 export const Header = () => {
   const [modal, setModal] = useState(false);
+  const { isLoggedIn } = useContext(DataContext);
 
   const handleModal = () => {
     setModal(!modal);
@@ -66,15 +68,31 @@ export const Header = () => {
         >
           Сагс
         </Button>
-        <Button
-          onClick={handleModal}
-          variant="text"
-          startIcon={<PermIdentityOutlinedIcon />}
-          className="text-[10px] font-[700] leading-4"
-          color="inherit"
-        >
-          Нэвтрэх
-        </Button>
+        {isLoggedIn ? (
+          <Button
+            onClick={() => {
+              window.location.href = "/userProfile";
+            }}
+            variant="text"
+            startIcon={
+              <PermIdentityOutlinedIcon style={{ color: "#18BA51" }} />
+            }
+            className="text-[10px] text-[#18BA51] font-[700] leading-4"
+            color="inherit"
+          >
+            Хэрэглэгч
+          </Button>
+        ) : (
+          <Button
+            onClick={handleModal}
+            variant="text"
+            startIcon={<PermIdentityOutlinedIcon />}
+            className="text-[10px] font-[700] leading-4"
+            color="inherit"
+          >
+            Нэвтрэх
+          </Button>
+        )}
       </div>
       {modal && <LoginModal setLoginModal={modal} handleClose={handleModal} />}
     </div>

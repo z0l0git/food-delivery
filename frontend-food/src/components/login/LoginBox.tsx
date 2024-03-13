@@ -9,6 +9,7 @@ export const LoginBox = (props: any) => {
   const { indexNum } = props;
   const [buttonColor, setButtonColor] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState(false);
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -38,9 +39,13 @@ export const LoginBox = (props: any) => {
         data
       );
 
+      localStorage.setItem("token", response);
+      window.location.href = "/";
+
       console.log(response);
+      setError(false);
     } catch (error) {
-      console.log(error);
+      setError(true);
     }
   };
   return (
@@ -76,6 +81,11 @@ export const LoginBox = (props: any) => {
             Нууц үг сэргээх
           </p>
         </div>
+        {error ? (
+          <p className="text-red-500">И-мэйл эсвэл нууц үг буруу байна.</p>
+        ) : (
+          ""
+        )}
       </div>
       <div className="w-full flex flex-col gap-4 items-center">
         <Button

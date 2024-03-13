@@ -1,26 +1,41 @@
-import jwt from "jsonwebtoken";
+import jwt, { GetPublicKeyOrSecret, Secret } from "jsonwebtoken";
 import { UserModel } from "../../models";
 import { Request, Response } from "express";
+
+type DecodedType = {
+  _id: string;
+  iat: number;
+  exp: number;
+};
 
 // Get LoggedIn User
 export const getLoggedInUser = async (req: Request, res: Response) => {
   try {
     const token = req.headers.authorization?.split(" ")[1];
 
-    if (!token) throw new Error("Not logged in");
+    if (!token) {
+      console.log("Not logged in");
+      return;
+    }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || "secret");
+    const secret = process.env.JWT_SECRET as Secret | GetPublicKeyOrSecret;
 
-    // const getUserById = async (id: string) => {
-    //   const user = await UserModel.findOne({ _id: decoded?._id });
-    //   return user;
-    // };
+    const decoded = jwt.verify(token, secret) as unknown;
 
-    // const user = await getUserById(decoded?._id);
+    const id = decoded as DecodedType;
 
-    // if (!user) throw new Error("User not found");
+    // console.log(id._id);
 
-    // return user;
+    const getUserById = async (id: any) => {
+      const user = await UserModel.findOne({ _id: id });
+      return user;
+    };
+
+    const user = await getUserById(id?._id);
+
+    if (!user) throw new Error("User not found");
+
+    return user;
   } catch (error: any) {
     throw new Error(error.message);
   }
