@@ -2,7 +2,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { log } from "console";
 
 type UserData = {
   _id: string;
@@ -23,7 +22,6 @@ export const DataContext = createContext<DataContextType>(
 );
 
 export const DataProvider = ({ children }: any) => {
-  const { push } = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loggedInUserData, setLoggedInUserData] = useState({
     _id: "",
