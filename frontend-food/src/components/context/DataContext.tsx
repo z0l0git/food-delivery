@@ -16,6 +16,15 @@ type DataContextType = {
   loading: boolean;
   isLoggedIn: boolean;
   loggedInUserData: UserData;
+  foodData: FoodData;
+};
+
+type FoodData = {
+  _id: string;
+  name: string;
+  image: string;
+  ingredient: string;
+  price: number;
 };
 
 export const DataContext = createContext<DataContextType>(
@@ -25,6 +34,13 @@ export const DataContext = createContext<DataContextType>(
 export const DataProvider = ({ children }: any) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState<boolean>(false);
+  const [foodData, setFoodData] = useState({
+    _id: "",
+    name: "",
+    image: "",
+    ingredient: "",
+    price: 0,
+  });
 
   const [loggedInUserData, setLoggedInUserData] = useState({
     _id: "",
@@ -39,6 +55,19 @@ export const DataProvider = ({ children }: any) => {
     typeof window !== "undefined" && localStorage.getItem("token");
 
   useEffect(() => {
+    const getFoods = async () => {
+      try {
+        const { data } = await axios.get("http://localhost:4000/foods");
+        data.map;
+        console.log(data);
+
+        console.log(foodData);
+      } catch (error: any) {
+        console.log("error getting foods");
+      }
+    };
+    getFoods();
+
     if (accessToken) {
       const getloggedUser = async () => {
         try {
@@ -72,6 +101,7 @@ export const DataProvider = ({ children }: any) => {
         loading,
         isLoggedIn,
         loggedInUserData,
+        foodData,
       }}
     >
       {children}
