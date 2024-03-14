@@ -13,6 +13,7 @@ type UserData = {
 };
 
 type DataContextType = {
+  loading: boolean;
   isLoggedIn: boolean;
   loggedInUserData: UserData;
 };
@@ -23,6 +24,8 @@ export const DataContext = createContext<DataContextType>(
 
 export const DataProvider = ({ children }: any) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
+
   const [loggedInUserData, setLoggedInUserData] = useState({
     _id: "",
     name: "",
@@ -39,6 +42,7 @@ export const DataProvider = ({ children }: any) => {
     if (accessToken) {
       const getloggedUser = async () => {
         try {
+          setLoading(true);
           const { data } = await axios.get(
             "http://localhost:4000/users/refresh",
             {
@@ -49,6 +53,7 @@ export const DataProvider = ({ children }: any) => {
           );
           setIsLoggedIn(true);
           setLoggedInUserData(data);
+          setLoading(false);
         } catch (error) {
           console.log("eror from get logged in user");
         }
@@ -64,6 +69,7 @@ export const DataProvider = ({ children }: any) => {
   return (
     <DataContext.Provider
       value={{
+        loading,
         isLoggedIn,
         loggedInUserData,
       }}

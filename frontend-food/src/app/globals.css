@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.success-fade-enter {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.success-fade-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition:
+    opacity 300ms ease-in,
+    transform 300ms ease-in;
+}
+
+.success-fade-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.success-fade-exit-active {
+  opacity: 0;
+  transform: translateX(100%);
+  transition:
+    opacity 300ms ease-out,
+    transform 300ms ease-out;
+}

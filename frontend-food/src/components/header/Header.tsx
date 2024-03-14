@@ -3,20 +3,45 @@ import React, { useContext, useState } from "react";
 import Image from "next/image";
 import InputAdornment from "@mui/material/InputAdornment";
 import Button from "@mui/material/Button";
+import { usePathname } from "next/navigation";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
 import { LoginModal } from "../login/LoginModal";
+import Link from "next/link";
 import { DataContext } from "../context/DataContext";
 
+type navigationItem = {
+  href: string;
+  label: string;
+};
+
+const navigationItems: navigationItem[] = [
+  {
+    href: "/",
+    label: "НҮҮР",
+  },
+  {
+    href: "/food",
+    label: "ХООЛНЫ ЦЭС",
+  },
+  {
+    href: "/delivery",
+    label: "ХҮРГЭЛТИЙН БҮС",
+  },
+];
+
 export const Header = () => {
+  const pathname = usePathname();
+
   const [modal, setModal] = useState(false);
   const { isLoggedIn } = useContext(DataContext);
 
   const handleModal = () => {
     setModal(!modal);
   };
+
   return (
     <div className="flex justify-between items-center py-3 ">
       <div className="flex items=center gap-9 text-center">
@@ -31,16 +56,15 @@ export const Header = () => {
           className="cursor-pointer"
         />
         <div className="flex items-center gap-9 text-[14px] font-[700] leading-4">
-          <p
-            onClick={() => {
-              window.location.href = "/";
-            }}
-            className="cursor-pointer"
-          >
-            НҮҮР
-          </p>
-          <p className="cursor-pointer">ХООЛНЫ ЦЭС</p>
-          <p className="cursor-pointer">ХҮРГЭЛТИЙН БҮС</p>
+          {navigationItems.map(({ href, label }, index) => (
+            <Link
+              href={href}
+              key={index}
+              className={`cursor-pointer ${pathname === href ? "text-[#18BA51]" : "black"}`}
+            >
+              {label}
+            </Link>
+          ))}
         </div>
       </div>
       <div className="flex items-center gap-4">
