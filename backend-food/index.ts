@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 
 import cors from "cors";
 import userRouter from "./routes/user/userRouter";
+import foodRouter from "./routes/food/foodRouter";
 
 const app = express();
 
@@ -14,7 +15,7 @@ connectDb();
 dotenv.config();
 
 app.use(userRouter);
-
+app.use(foodRouter);
 app.listen(4000, () => {
   console.log("http://localhost:4000");
 });
