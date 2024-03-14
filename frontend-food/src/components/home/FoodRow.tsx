@@ -1,10 +1,30 @@
-"use client";
 import { Stack, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import Image from "next/image";
 import { FoodCards } from "./FoodCards";
+import axios from "axios";
 
-export const FoodRow = () => {
+type FoodType = {
+  _id: string;
+  name: string;
+  image: string;
+  ingredients: string;
+  price: string;
+};
+
+const getFoods = async () => {
+  try {
+    const { data } = await axios.get<FoodType[]>("http://localhost:4000/foods");
+
+    return data;
+  } catch (error: any) {
+    console.log("error getting foods");
+  }
+};
+
+export const FoodRow = async () => {
+  const data = await getFoods();
+
   return (
     <Stack direction="column" spacing={2}>
       <Typography
@@ -19,12 +39,21 @@ export const FoodRow = () => {
         <Image src="/star.png" alt="icon" width={30} height={30} />
         All Items
       </Typography>
-      <Stack direction="row" spacing={3}>
-        <FoodCards
-          name="Breakfast"
-          image="https://res.cloudinary.com/dvru9eig5/image/upload/v1710385165/ggozatjz3dmkozdjbatq.jpg"
-          price="14,800"
-        />
+      <Stack
+        direction="row"
+        spacing={3}
+        sx={{ justifyContent: "space-between" }}
+      >
+        {data?.map((el, index: number) => {
+          return (
+            <FoodCards
+              key={Number}
+              name={el.name}
+              image={el.image}
+              price={el.price.toLocaleString()}
+            />
+          );
+        })}
       </Stack>
     </Stack>
   );

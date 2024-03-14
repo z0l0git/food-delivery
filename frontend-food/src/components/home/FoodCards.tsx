@@ -5,7 +5,7 @@ import React from "react";
 export const FoodCards = (props: any) => {
   const { name, image, price } = props;
   return (
-    <Stack direction="column" spacing={3}>
+    <Stack direction="column" spacing={3} sx={{}}>
       <Card
         sx={{
           border: "none",

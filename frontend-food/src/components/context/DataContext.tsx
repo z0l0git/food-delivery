@@ -58,14 +58,12 @@ export const DataProvider = ({ children }: any) => {
     const getFoods = async () => {
       try {
         const { data } = await axios.get("http://localhost:4000/foods");
-        data.map;
-        console.log(data);
-
-        console.log(foodData);
+        setFoodData(data);
       } catch (error: any) {
         console.log("error getting foods");
       }
     };
+
     getFoods();
 
     if (accessToken) {
