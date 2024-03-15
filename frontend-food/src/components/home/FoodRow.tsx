@@ -1,8 +1,10 @@
+"use server";
 import { Stack, Typography } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { FoodCards } from "./FoodCards";
 import axios from "axios";
+import { FoodModal } from "./FoodModal";
 
 type FoodType = {
   _id: string;
@@ -21,6 +23,12 @@ const getFoods = async () => {
     console.log("error getting foods");
   }
 };
+
+// const handleModal = (modal: boolean) => {
+//   console.log(modal);
+//   modal = !modal;
+//   return;
+// };
 
 export const FoodRow = async () => {
   const data = await getFoods();
@@ -47,7 +55,7 @@ export const FoodRow = async () => {
         {data?.map((el, index: number) => {
           return (
             <FoodCards
-              key={Number}
+              key={index}
               name={el.name}
               image={el.image}
               price={el.price.toLocaleString()}

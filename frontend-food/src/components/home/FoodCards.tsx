@@ -1,18 +1,33 @@
+"use client";
 import { Card, CardContent, CardMedia, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
+import { FoodModal } from "./FoodModal";
 
 export const FoodCards = (props: any) => {
   const { name, image, price } = props;
+  const [modal, setModal] = React.useState(false);
+
+  const press = () => {
+    setModal(!modal);
+  };
+
   return (
-    <Stack direction="column" spacing={3} sx={{}}>
+    <Stack direction="column" spacing={3}>
+      <FoodModal modal={modal} handleModal={press} />
       <Card
+        onClick={press}
         sx={{
           border: "none",
           backgroundColor: "transparent",
           outline: "none",
           boxShadow: "none",
           paddingX: "none",
+          cursor: "pointer",
+          "&:hover": {
+            transform: "scale(1.05)",
+            transition: "all 0.2s ease-in-out",
+          },
         }}
       >
         <CardMedia
