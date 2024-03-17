@@ -47,7 +47,7 @@ export const FoodRow = async () => {
         {data?.map((el, index: number) => {
           return (
             <FoodCards
-              key={Number}
+              key={index}
               name={el.name}
               image={el.image}
               price={el.price.toLocaleString()}
