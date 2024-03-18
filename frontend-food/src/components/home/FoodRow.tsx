@@ -50,7 +50,7 @@ export const FoodRow = async () => {
       <Stack
         direction="row"
         spacing={3}
-        sx={{ justifyContent: "space-between" }}
+        sx={{ justifyContent: "space-between", flexWrap: "wrap" }}
       >
         {data?.map((el, index: number) => {
           return (

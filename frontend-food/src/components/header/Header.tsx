@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { ChangeEvent, useContext, useState } from "react";
 import Image from "next/image";
 import InputAdornment from "@mui/material/InputAdornment";
 import Button from "@mui/material/Button";
@@ -41,6 +41,14 @@ export const Header = () => {
   const handleModal = () => {
     setModal(!modal);
   };
+  const [search, setSearch] = useState("");
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    if (name === "search") {
+      setSearch(value);
+    }
+  };
 
   return (
     <div className="flex justify-between items-center py-3 ">
@@ -70,13 +78,19 @@ export const Header = () => {
       <div className="flex items-center gap-4">
         <div className="border-[2px] rounded-md border-black px-2">
           <TextField
+            name="search"
+            onChange={handleChange}
+            size="small"
+            defaultValue={search}
             id="input-with-icon-textfield"
             InputProps={{
               disableUnderline: true,
               placeholder: "Хайх",
               startAdornment: (
                 <InputAdornment position="start">
-                  <SearchIcon />
+                  <Link href={{ pathname: "/search", query: { id: search } }}>
+                    <SearchIcon className="cursor-pointer" />
+                  </Link>
                 </InputAdornment>
               ),
             }}
