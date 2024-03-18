@@ -11,6 +11,7 @@ import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
 import { LoginModal } from "../login/LoginModal";
 import Link from "next/link";
 import { DataContext } from "../context/DataContext";
+import { CartModal } from "../cart/CartModal";
 
 type navigationItem = {
   href: string;
@@ -36,10 +37,14 @@ export const Header = () => {
   const pathname = usePathname();
 
   const [modal, setModal] = useState(false);
+  const [cartModal, setCartModal] = useState(false);
   const { isLoggedIn } = useContext(DataContext);
 
   const handleModal = () => {
     setModal(!modal);
+  };
+  const handleCartModal = () => {
+    setCartModal(!cartModal);
   };
   const [search, setSearch] = useState("");
 
@@ -103,6 +108,7 @@ export const Header = () => {
           startIcon={<ShoppingBasketOutlinedIcon />}
           className="text-[10px] font-[700] leading-4"
           color="inherit"
+          onClick={handleCartModal}
         >
           Сагс
         </Button>
@@ -133,6 +139,9 @@ export const Header = () => {
         )}
       </div>
       {modal && <LoginModal setLoginModal={modal} handleClose={handleModal} />}
+      {cartModal && (
+        <CartModal setCartModal={cartModal} handleClose={handleCartModal} />
+      )}
     </div>
   );
 };

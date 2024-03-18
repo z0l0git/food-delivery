@@ -5,7 +5,7 @@ import React from "react";
 import { FoodModal } from "./FoodModal";
 
 export const FoodCards = (props: any) => {
-  const { name, image, price } = props;
+  const { name, image, price, ingredient, id } = props;
   const [modal, setModal] = React.useState(false);
 
   const press = () => {
@@ -14,7 +14,15 @@ export const FoodCards = (props: any) => {
 
   return (
     <Stack direction="column" spacing={3}>
-      <FoodModal modal={modal} handleModal={press} />
+      <FoodModal
+        modal={modal}
+        handleModal={press}
+        name={name}
+        image={image}
+        price={price}
+        ingredient={ingredient}
+        id={id}
+      />
       <Card
         onClick={press}
         sx={{

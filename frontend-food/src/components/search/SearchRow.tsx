@@ -10,7 +10,7 @@ export const SearchRow = async (props: { id: string }) => {
     _id: string;
     name: string;
     image: string;
-    ingredients: string;
+    ingredient: string;
     price: string;
   };
 
@@ -47,6 +47,7 @@ export const SearchRow = async (props: { id: string }) => {
             key={index}
             name={el.name}
             image={el.image}
+            ingredient={el.ingredient}
             price={el.price.toLocaleString()}
           />
         );

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { FoodModalContent } from "./FoodModalContent";
 
 export const FoodModal = (props: any) => {
-  const { modal, handleModal } = props;
+  const { modal, handleModal, name, image, price, ingredient, id } = props;
 
   return (
     <div
@@ -14,7 +14,13 @@ export const FoodModal = (props: any) => {
         onClick={handleModal}
         className="absolute top-0 left-0 w-full h-full bg-black/50 flex justify-center items-center z-10"
       ></div>
-      <FoodModalContent />
+      <FoodModalContent
+        name={name}
+        image={image}
+        price={price}
+        ingredient={ingredient}
+        id={id}
+      />
     </div>
   );
 };

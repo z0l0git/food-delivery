@@ -10,7 +10,7 @@ type FoodType = {
   _id: string;
   name: string;
   image: string;
-  ingredients: string;
+  ingredient: string;
   price: string;
 };
 
@@ -59,6 +59,8 @@ export const FoodRow = async () => {
               name={el.name}
               image={el.image}
               price={el.price.toLocaleString()}
+              ingredient={el.ingredient}
+              id={el._id}
             />
           );
         })}
