@@ -24,7 +24,7 @@ const navigationItems: navigationItem[] = [
     label: "НҮҮР",
   },
   {
-    href: "/food",
+    href: "/menu",
     label: "ХООЛНЫ ЦЭС",
   },
   {
