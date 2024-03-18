@@ -34,6 +34,7 @@ export const DataContext = createContext<DataContextType>(
 export const DataProvider = ({ children }: any) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState<boolean>(false);
+
   const [foodData, setFoodData] = useState({
     _id: "",
     name: "",
