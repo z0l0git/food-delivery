@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { ChangeEvent, useContext, useState } from "react";
 import Image from "next/image";
 import InputAdornment from "@mui/material/InputAdornment";
 import Button from "@mui/material/Button";
@@ -11,6 +11,7 @@ import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
 import { LoginModal } from "../login/LoginModal";
 import Link from "next/link";
 import { DataContext } from "../context/DataContext";
+import { CartModal } from "../cart/CartModal";
 
 type navigationItem = {
   href: string;
@@ -36,10 +37,22 @@ export const Header = () => {
   const pathname = usePathname();
 
   const [modal, setModal] = useState(false);
+  const [cartModal, setCartModal] = useState(false);
   const { isLoggedIn } = useContext(DataContext);
 
   const handleModal = () => {
     setModal(!modal);
+  };
+  const handleCartModal = () => {
+    setCartModal(!cartModal);
+  };
+  const [search, setSearch] = useState("");
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    if (name === "search") {
+      setSearch(value);
+    }
   };
 
   return (
@@ -70,13 +83,19 @@ export const Header = () => {
       <div className="flex items-center gap-4">
         <div className="border-[2px] rounded-md border-black px-2">
           <TextField
+            name="search"
+            onChange={handleChange}
+            size="small"
+            defaultValue={search}
             id="input-with-icon-textfield"
             InputProps={{
               disableUnderline: true,
               placeholder: "Хайх",
               startAdornment: (
                 <InputAdornment position="start">
-                  <SearchIcon />
+                  <Link href={{ pathname: "/search", query: { id: search } }}>
+                    <SearchIcon className="cursor-pointer" />
+                  </Link>
                 </InputAdornment>
               ),
             }}
@@ -89,6 +108,7 @@ export const Header = () => {
           startIcon={<ShoppingBasketOutlinedIcon />}
           className="text-[10px] font-[700] leading-4"
           color="inherit"
+          onClick={handleCartModal}
         >
           Сагс
         </Button>
@@ -119,6 +139,9 @@ export const Header = () => {
         )}
       </div>
       {modal && <LoginModal setLoginModal={modal} handleClose={handleModal} />}
+      {cartModal && (
+        <CartModal setCartModal={cartModal} handleClose={handleCartModal} />
+      )}
     </div>
   );
 };

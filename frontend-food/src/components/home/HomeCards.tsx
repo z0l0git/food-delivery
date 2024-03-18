@@ -54,6 +54,9 @@ export const HomeCards = () => {
         paddingX: "120px",
         justifyContent: "space-between",
         height: "100%",
+        width: "100%",
+
+        flexWrap: "wrap",
       }}
     >
       {cardArray.map((card, index) => (
