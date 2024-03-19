@@ -11,6 +11,7 @@ const CategorySchema = new Schema<CategoryModelType>({
     type: String,
     required: true,
   },
+
   foodId: {
     type: Schema.Types.ObjectId,
     ref: "Food",
