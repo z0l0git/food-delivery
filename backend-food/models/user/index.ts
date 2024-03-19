@@ -18,6 +18,7 @@ const UserSchema = new Schema<UserModelType>({
   isAdmin: { type: Boolean, default: false, required: false },
   otp: { type: String, required: false },
 });
+
 UserSchema.index({ email: 1 }, { unique: true });
 
 export const UserModel: Model<UserModelType> =

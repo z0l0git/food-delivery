@@ -73,7 +73,10 @@ export const FoodCards = (props: any) => {
               fontSize={18}
               sx={{ color: "#18BA51" }}
             >
-              {price}₮
+              {new Intl.NumberFormat("en-US", {
+                maximumFractionDigits: 0,
+              }).format(Number(price))}
+              ₮
             </Typography>
           </Stack>
         </CardContent>

@@ -5,7 +5,6 @@ import { passwordHash } from "../../utils";
 export const createUserQuery = async (req: Request) => {
   try {
     const { name, email, phone, password } = req.body;
-    console.log(req.body);
 
     const asd = await passwordHash(password);
 
@@ -18,6 +17,6 @@ export const createUserQuery = async (req: Request) => {
 
     return user;
   } catch (error: any) {
-    console.log(error.message);
+    return error.message;
   }
 };

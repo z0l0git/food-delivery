@@ -15,7 +15,7 @@ export const SignupBox = () => {
   const [error, setError] = useState(false);
   const [checkBox, setCheckBox] = useState(false);
   const [rePassword, setRePassword] = useState("");
-  const [data, setData] = useState({
+  const [userData, setUserData] = useState({
     name: "",
     email: "",
     phone: "",
@@ -33,10 +33,10 @@ export const SignupBox = () => {
   //Checks if the form is filled
   useEffect(() => {
     if (
-      !data.name ||
-      !data.email ||
-      !data.phone ||
-      !data.password ||
+      !userData.name ||
+      !userData.email ||
+      !userData.phone ||
+      !userData.password ||
       !rePassword ||
       !checkBox
     ) {
@@ -44,13 +44,13 @@ export const SignupBox = () => {
       return;
     }
     setButtonColor(true);
-  }, [data, rePassword, checkBox]);
+  }, [userData, rePassword, checkBox]);
 
   //Stores the data entered by the user
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setData({ ...data, [name]: value });
-    console.log(data);
+    setUserData({ ...userData, [name]: value });
+    console.log(userData);
   };
 
   //Stores the second password entered by the user
@@ -61,15 +61,27 @@ export const SignupBox = () => {
 
   //Submits the form data to the server
   const handleSubmit = async () => {
-    if (data.password !== rePassword) {
+    if (userData.password !== rePassword) {
       setError(true);
       setErrorPassword("Passwords do not match");
     } else {
       setError(false);
       setErrorPassword("");
       try {
-        await axios.post("http://localhost:4000/user/signup", data);
-        console.log("success");
+        const { data } = await axios.post(
+          "http://localhost:4000/user/signup",
+          userData
+        );
+        if (
+          data ===
+          `E11000 duplicate key error collection: test.users index: email_1 dup key: { email: "${userData.email}" }`
+        ) {
+          setError(true);
+          setErrorPassword("И-мэйл хаяг бүртгэлтэй байна");
+        } else {
+          setError(false);
+          setErrorPassword("");
+        }
       } catch (err) {
         console.log(err);
       }

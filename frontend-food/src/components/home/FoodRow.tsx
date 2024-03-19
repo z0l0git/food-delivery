@@ -58,7 +58,7 @@ export const FoodRow = async () => {
               key={index}
               name={el.name}
               image={el.image}
-              price={el.price.toLocaleString()}
+              price={el.price}
               ingredient={el.ingredient}
               id={el._id}
             />

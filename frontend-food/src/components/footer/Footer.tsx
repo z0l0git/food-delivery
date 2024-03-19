@@ -6,14 +6,33 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 
 export const Footer = () => {
-  const textArray: string[] = [
-    "Нүүр",
-    "Холбоо барих",
-    "Хоолны Цэс",
-    "Үйлчилгээний нөхцөл",
-    "Хүргэлтийн Бүс",
-    "Нууцлалын бодлого",
+  const textArray: Array<{ label: string; link: string }> = [
+    {
+      label: "Нүүр",
+      link: "/",
+    },
+    {
+      label: "Холбоо барих",
+      link: "/contact",
+    },
+    {
+      label: "Хоолны Цэс",
+      link: "/menu",
+    },
+    {
+      label: "Үйлчилгээний нөхцөл",
+      link: "/terms",
+    },
+    {
+      label: "Хүргэлтийн Бүс",
+      link: "/delivery",
+    },
+    {
+      label: "Нууцлалын бодлого",
+      link: "/privacy",
+    },
   ];
+
   return (
     <div className="relative bottom-0 left-0 bg-[url('/Footer.png')] w-screen h-[545px] md:px-[120px] flex flex-col justify-center items-center text-white gap-[45px] px-[100px]">
       <div className="flex items-center gap-2">
@@ -23,11 +42,11 @@ export const Footer = () => {
       <div className="flex items-center justify-between w-full">
         {textArray.map((text, index) => (
           <p
-            className="border-b-2 border-white w-fit"
+            className="border-b-2 border-white w-fit cursor-pointer hover:text-black"
             key={index}
-            onClick={() => console.log(text)}
+            onClick={() => (window.location.href = text.link)}
           >
-            {text}
+            {text.label}
           </p>
         ))}
       </div>

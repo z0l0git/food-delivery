@@ -55,16 +55,7 @@ export const DataProvider = ({ children }: any) => {
     price: 0,
   });
 
-  const [cartData, setCartData] = useState([
-    {
-      _id: "",
-      name: "",
-      quantity: 1,
-      image: "",
-      ingredient: "",
-      price: 0,
-    },
-  ]);
+  const [cartData, setCartData] = useState<CartDataType[]>([]);
 
   const [loggedInUserData, setLoggedInUserData] = useState({
     _id: "",

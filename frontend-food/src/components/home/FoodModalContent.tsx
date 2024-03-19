@@ -10,6 +10,13 @@ export const FoodModalContent = (props: any) => {
   const { cartData, setCartData } = useContext(DataContext);
 
   const handleAddToCart = () => {
+    if (cartData.some((item) => item._id === id)) {
+      const index = cartData.findIndex((item) => item._id === id);
+      cartData[index].quantity += count;
+      setCartData([...cartData]);
+      return;
+    }
+
     const cartItem = {
       _id: id,
       name: name,
@@ -20,12 +27,15 @@ export const FoodModalContent = (props: any) => {
     };
 
     setCartData([...cartData, cartItem]);
+    localStorage.setItem("cartData", JSON.stringify([...cartData, cartItem]));
   };
-  console.log(cartData);
 
   const handleCount = (e: any) => {
     if (e.target.innerText === "-") {
       setCount(count - 1);
+      if (count === 1) {
+        return;
+      }
     } else {
       setCount(count + 1);
     }
