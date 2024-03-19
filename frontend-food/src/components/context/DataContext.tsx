@@ -1,7 +1,6 @@
 "use client";
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 
 type UserData = {
   _id: string;
@@ -17,6 +16,19 @@ type DataContextType = {
   isLoggedIn: boolean;
   loggedInUserData: UserData;
   foodData: FoodData;
+  cartData: CartData;
+  setCartData: (data: CartData) => void;
+};
+
+type CartData = CartDataType[];
+
+type CartDataType = {
+  _id: string;
+  name: string;
+  quantity: number;
+  image: string;
+  ingredient: string;
+  price: number;
 };
 
 type FoodData = {
@@ -42,6 +54,17 @@ export const DataProvider = ({ children }: any) => {
     ingredient: "",
     price: 0,
   });
+
+  const [cartData, setCartData] = useState([
+    {
+      _id: "",
+      name: "",
+      quantity: 1,
+      image: "",
+      ingredient: "",
+      price: 0,
+    },
+  ]);
 
   const [loggedInUserData, setLoggedInUserData] = useState({
     _id: "",
@@ -101,6 +124,8 @@ export const DataProvider = ({ children }: any) => {
         isLoggedIn,
         loggedInUserData,
         foodData,
+        cartData,
+        setCartData,
       }}
     >
       {children}

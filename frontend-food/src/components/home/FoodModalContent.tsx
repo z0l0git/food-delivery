@@ -1,10 +1,27 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Image from "next/image";
+import { DataContext } from "../context/DataContext";
 
 export const FoodModalContent = (props: any) => {
   const { name, image, price, ingredient, id } = props;
   const [count, setCount] = useState(1);
+
+  const { cartData, setCartData } = useContext(DataContext);
+
+  const handleAddToCart = () => {
+    const cartItem = {
+      _id: id,
+      name: name,
+      ingredient: ingredient,
+      price: price,
+      image: image,
+      quantity: count,
+    };
+
+    setCartData([...cartData, cartItem]);
+  };
+  console.log(cartData);
 
   const handleCount = (e: any) => {
     if (e.target.innerText === "-") {
@@ -55,7 +72,10 @@ export const FoodModalContent = (props: any) => {
           </button>
         </div>
 
-        <button className="w-full h-[48px] rounded-[6px] bg-[#18BA51] text-white">
+        <button
+          className="w-full h-[48px] rounded-[6px] bg-[#18BA51] text-white"
+          onClick={handleAddToCart}
+        >
           Add to Cart
         </button>
       </div>

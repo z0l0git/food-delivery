@@ -1,56 +1,18 @@
 "use client";
-import React, { ChangeEvent, useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { DataContext, useData } from "../context/DataContext";
+import { useData } from "../context/DataContext";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
 import PhoneEnabledOutlinedIcon from "@mui/icons-material/PhoneEnabledOutlined";
 import ForwardToInboxOutlinedIcon from "@mui/icons-material/ForwardToInboxOutlined";
-import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
+
 import { LogoutModal } from "./LogoutModal";
 import axios from "axios";
-
-type OrderHistoryProps = {
-  handleModal: () => void;
-};
-
-const OrderHistory = ({ handleModal }: OrderHistoryProps) => {
-  return (
-    <div className="px-[20px] flex flex-col gap-[30px]">
-      <div className="flex items-center gap-[5px] cursor-pointer w-fit">
-        <div className="bg-white border-[#EEEFF2] border-[1px] w-[48px] h-[48px] flex items-center justify-center rounded-full">
-          <PermIdentityOutlinedIcon />
-        </div>
-        <p>Захиалгын түүх</p>
-      </div>
-      <div
-        className="flex items-center gap-[5px] cursor-pointer w-fit"
-        onClick={handleModal}
-      >
-        <div className="bg-white border-[#EEEFF2] border-[1px] w-[48px] h-[48px] flex items-center justify-center rounded-full">
-          <ExitToAppOutlinedIcon />
-        </div>
-        <p>Гарах</p>
-      </div>
-    </div>
-  );
-};
-
-type SaveButtonProps = {
-  handleSubmit: () => void;
-};
-
-const SaveButton = ({ handleSubmit }: SaveButtonProps) => {
-  return (
-    <div
-      className="bg-[#18BA51] w-full h-[48px] rounded-[4px] flex items-center justify-center text-white cursor-pointer"
-      onClick={handleSubmit}
-    >
-      Хадгалах
-    </div>
-  );
-};
+import { OrderHistory } from "./OrderHistoryProps";
+import { useEffect, useState } from "react";
+import { SaveButton } from "./SaveButton";
+import { Success } from "./Success";
 
 type ConditionalRendererProps = {
   edit: boolean;
@@ -245,20 +207,5 @@ export const ProfileBox = () => {
         </div>
       )}
     </>
-  );
-};
-
-const Success = () => {
-  return (
-    <motion.div
-      initial={{ top: -100 }}
-      animate={{ top: 100, transition: { duration: 0.3, bounce: 0.3 } }}
-      exit={{ top: -100 }}
-      className="success-fade w-[384px] h-[56px] shadow-lg flex items-center justify-center rounded-lg gap-5 absolute top-[100px] bg-white"
-      style={{}}
-    >
-      <span className="text-[#18BA51]">✔</span>
-      Мэдээлэл амжилттай хадгалагдлаа
-    </motion.div>
   );
 };

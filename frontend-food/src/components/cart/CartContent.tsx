@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Image from "next/image";
 import ClearIcon from "@mui/icons-material/Clear";
+import { DataContext } from "../context/DataContext";
 
 export const CartContent = () => {
   const [count, setCount] = useState(1);
 
-  const handleCount = (e: any) => {
+  function handleCount(e: any) {
     if (e.target.innerText === "-") {
       setCount(count - 1);
     } else {
       setCount(count + 1);
     }
-  };
+  }
+
   return (
     <div className="border-y-2 border-[#D6D8DB] w-full flex justify-between items-center p-5 h-[200px] gap-4">
       <div className="w-[50%] h-[100%] flex justify-center items-center rounded-[16px] overflow-hidden">
