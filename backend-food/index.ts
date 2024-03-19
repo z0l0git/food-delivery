@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import userRouter from "./routes/user/userRouter";
 import foodRouter from "./routes/food/foodRouter";
+import categoryRouter from "./routes/category/categoryRouter";
 
 const app = express();
 
@@ -16,6 +17,8 @@ dotenv.config();
 
 app.use(userRouter);
 app.use(foodRouter);
+app.use(categoryRouter);
+
 app.listen(4000, () => {
   console.log("http://localhost:4000");
 });
