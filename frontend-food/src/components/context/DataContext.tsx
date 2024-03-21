@@ -18,6 +18,7 @@ type DataContextType = {
   foodData: FoodData;
   cartData: CartData;
   setCartData: (data: CartData) => void;
+  category: CategoryData;
 };
 
 type CartData = CartDataType[];
@@ -37,6 +38,14 @@ type FoodData = {
   image: string;
   ingredient: string;
   price: number;
+};
+
+type CategoryData = Category[];
+
+type Category = {
+  id: string;
+  name: string;
+  foodId: string;
 };
 
 export const DataContext = createContext<DataContextType>(
@@ -65,6 +74,7 @@ export const DataProvider = ({ children }: any) => {
     password: "",
     isAdmin: "",
   });
+  const [category, setCategory] = useState<Category[]>([]);
 
   const accessToken =
     typeof window !== "undefined" && localStorage.getItem("token");
@@ -80,6 +90,18 @@ export const DataProvider = ({ children }: any) => {
     };
 
     getFoods();
+    const getCategory = async () => {
+      try {
+        const { data } = await axios.get(
+          "http://localhost:4000/category/getAll"
+        );
+
+        setCategory(data);
+      } catch (error: any) {
+        console.log("error getting category");
+      }
+    };
+    getCategory();
 
     if (accessToken) {
       const getloggedUser = async () => {
@@ -117,6 +139,7 @@ export const DataProvider = ({ children }: any) => {
         foodData,
         cartData,
         setCartData,
+        category,
       }}
     >
       {children}
