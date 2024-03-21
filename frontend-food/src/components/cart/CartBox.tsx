@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { CartContent } from "./CartContent";
+import Link from "next/link";
 
 export const CartBox = (props: any) => {
   const { handleClose } = props;
@@ -20,6 +21,7 @@ export const CartBox = (props: any) => {
       0
     );
     const totalPrice = sum.toFixed(2);
+    localStorage.setItem("totalPrice", totalPrice);
     setTotal(totalPrice);
   }, [cartData]);
 
@@ -51,7 +53,9 @@ export const CartBox = (props: any) => {
           <p className="font-bold text-[18px]">{total}₮</p>
         </div>
         <div className="w-full bg-[#18BA51] h-[48px] rounded-md text-white flex justify-center items-center cursor-pointer">
-          <p>Захиалах</p>
+          <Link href="/order">
+            <p>Захиалах</p>
+          </Link>
         </div>
       </div>
     </div>
