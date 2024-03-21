@@ -19,6 +19,15 @@ type DataContextType = {
   cartData: CartData;
   setCartData: (data: CartData) => void;
   category: CategoryData;
+  orderData: OrderData;
+  setOrderData: (data: OrderData) => void;
+};
+
+type OrderData = {
+  userId: string;
+  foods: string[];
+  address: string;
+  notes: string;
 };
 
 type CartData = CartDataType[];
@@ -55,6 +64,12 @@ export const DataContext = createContext<DataContextType>(
 export const DataProvider = ({ children }: any) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState<boolean>(false);
+  const [orderData, setOrderData] = useState<OrderData>({
+    userId: "",
+    foods: [],
+    address: "",
+    notes: "",
+  });
 
   const [foodData, setFoodData] = useState({
     _id: "",
@@ -140,6 +155,8 @@ export const DataProvider = ({ children }: any) => {
         cartData,
         setCartData,
         category,
+        orderData,
+        setOrderData,
       }}
     >
       {children}

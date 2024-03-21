@@ -53,7 +53,7 @@ export const CartBox = (props: any) => {
           <p className="font-bold text-[18px]">{total}₮</p>
         </div>
         <div className="w-full bg-[#18BA51] h-[48px] rounded-md text-white flex justify-center items-center cursor-pointer">
-          <Link href="/order">
+          <Link href="/order" onClick={handleClose}>
             <p>Захиалах</p>
           </Link>
         </div>

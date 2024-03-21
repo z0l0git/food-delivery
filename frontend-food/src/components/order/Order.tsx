@@ -6,8 +6,7 @@ import { OrderHeader } from "@/components/order/OrderHeader";
 import { OrderInputArea } from "@/components/order/OrderInputArea";
 
 export const Order = () => {
-  const total = localStorage?.getItem("totalPrice");
-  console.log();
+  const total = localStorage.getItem("totalPrice") || "";
 
   useEffect(() => {}, [total]);
 

@@ -99,8 +99,10 @@ export const OrderInputArea = () => {
         <p>Төлбөр төлөх </p>
         <div className="flex w-full gap-[40px] items-center ">
           <FormControlLabel
+            name="card"
             control={
               <Checkbox
+                name="card"
                 sx={{
                   color: "black",
                   "&.Mui-checked": {
@@ -115,6 +117,7 @@ export const OrderInputArea = () => {
             }}
           />
           <FormControlLabel
+            name="card"
             control={
               <Checkbox
                 sx={{

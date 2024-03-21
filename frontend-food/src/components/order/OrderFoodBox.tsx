@@ -1,12 +1,12 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { OrderFoodContent } from "./OrderFoodContent";
+import { DataContext } from "../context/DataContext";
 
 export const OrderFoodBox = () => {
-  const data: any = localStorage.getItem("cartData") || "[]";
+  const { setOrderData } = useContext(DataContext);
+  const data: string | null = localStorage.getItem("cartData") || "[]";
   const cartData = JSON.parse(data);
-
-  useEffect(() => {}, [cartData]);
 
   return (
     <>
