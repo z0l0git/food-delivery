@@ -49,12 +49,12 @@ export const HomeCards = () => {
   return (
     <Stack
       direction="row"
-      spacing={2}
       sx={{
         paddingX: "120px",
         justifyContent: "space-between",
         height: "100%",
         width: "100%",
+        gapX: "20px",
 
         flexWrap: "wrap",
       }}

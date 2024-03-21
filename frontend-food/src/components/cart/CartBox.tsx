@@ -21,7 +21,7 @@ export const CartBox = (props: any) => {
     );
     const totalPrice = sum.toFixed(2);
     setTotal(totalPrice);
-  }, [data]);
+  }, [cartData]);
 
   return (
     <div className="h-screen bg-white z-30 right-0 w-[586px] flex flex-col justify-between rounded-l-md">

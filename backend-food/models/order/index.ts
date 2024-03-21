@@ -8,9 +8,8 @@ export type OrderModelType = {
   totalPrice: string;
   process: string;
   createdDate: Date;
-  district: string;
-  khoroo: string;
-  apartment: string;
+  address: string;
+  notes: string;
 };
 
 const OrderSchema = new Schema<OrderModelType>({
@@ -42,17 +41,13 @@ const OrderSchema = new Schema<OrderModelType>({
     default: Date.now,
   },
 
-  district: {
+  address: {
     type: String,
     required: true,
   },
-  khoroo: {
+  notes: {
     type: String,
-    required: true,
-  },
-  apartment: {
-    type: String,
-    required: true,
+    required: false,
   },
 });
 

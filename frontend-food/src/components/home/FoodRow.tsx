@@ -34,7 +34,11 @@ export const FoodRow = async () => {
   const data = await getFoods();
 
   return (
-    <Stack direction="column" spacing={2}>
+    <Stack
+      direction="column"
+      spacing={2}
+      sx={{ justifyContent: "start", width: "100%" }}
+    >
       <Typography
         fontWeight={700}
         fontSize={22}
@@ -49,8 +53,12 @@ export const FoodRow = async () => {
       </Typography>
       <Stack
         direction="row"
-        spacing={3}
-        sx={{ justifyContent: "space-between", flexWrap: "wrap" }}
+        sx={{
+          justifyContent: "space-around",
+          flexWrap: "wrap",
+          gap: "10px",
+          width: "100%",
+        }}
       >
         {data?.map((el, index: number) => {
           return (

@@ -13,7 +13,7 @@ export const FoodCards = (props: any) => {
   };
 
   return (
-    <Stack direction="column" spacing={3}>
+    <Stack direction="column">
       <FoodModal
         modal={modal}
         handleModal={press}
