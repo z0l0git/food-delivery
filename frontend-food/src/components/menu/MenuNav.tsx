@@ -1,11 +1,26 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { DataContext } from "../context/DataContext";
 import axios from "axios";
 
 export const MenuNav = () => {
   const { category } = useContext(DataContext);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [categoryItems, setCategoryItems] = useState<
+    [
+      {
+        name: string;
+        image: string;
+        price: number;
+        ingredient: string;
+        _id: string;
+      },
+    ]
+  >([{ name: "", image: "", price: 0, ingredient: "", _id: "" }]);
+
+  useEffect(() => {
+    getCategoryItems(category[0]?.id);
+  }, [category]);
 
   const getCategoryItems = async (id: string) => {
     console.log("gg");
