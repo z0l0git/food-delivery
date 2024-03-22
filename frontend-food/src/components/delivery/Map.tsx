@@ -1,14 +1,17 @@
+"use client";
+import { MapContainer, Marker, TileLayer, Tooltip } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import "leaflet-defaulticon-compatibility";
+import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 
-import { MapContainer } from "react-leaflet/MapContainer";
-import { TileLayer } from "react-leaflet/TileLayer";
-
-export const Map = () => {
+export const Map = (props: any) => {
+  const { position, zoom } = props;
   return (
     <MapContainer
-      center={{ lat: 51.505, lng: -0.09 }}
-      zoom={13}
+      center={position}
+      zoom={zoom}
       scrollWheelZoom={false}
+      style={{ width: "100%", height: "100%", zIndex: "1" }}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

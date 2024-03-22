@@ -123,6 +123,7 @@ export const Header = () => {
             }
             className="text-[10px] text-[#18BA51] font-[700] leading-4"
             color="inherit"
+            sx={{ color: "#18BA51" }}
           >
             Хэрэглэгч
           </Button>
