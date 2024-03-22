@@ -6,9 +6,9 @@ import { OrderHeader } from "@/components/order/OrderHeader";
 import { OrderInputArea } from "@/components/order/OrderInputArea";
 
 export const Order = () => {
-  const total = localStorage.getItem("totalPrice") || "";
+  // const total = localStorage.getItem("totalPrice") || "";
 
-  useEffect(() => {}, [total]);
+  // useEffect(() => {}, [total]);
 
   return (
     <div className="px-[120px] w-full flex justify-around gap-[50px] mt-[100px]">
@@ -31,7 +31,7 @@ export const Order = () => {
             <div className="w-full">
               <p className="text-[18px] text-[#5E6166]">Нийт төлөх дүн</p>
               <p className="font-bold text-[18px]">
-                {Number(total)?.toLocaleString()}₮
+                {Number("1000")?.toLocaleString()}₮
               </p>
             </div>
             <div className="w-full bg-[#18BA51] h-[48px] rounded-md text-white flex justify-center items-center cursor-pointer">

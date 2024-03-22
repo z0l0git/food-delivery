@@ -2,12 +2,13 @@
 "use client";
 import axios from "axios";
 import { IoLocationOutline } from "react-icons/io5";
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { Checkbox, FormControlLabel } from "@mui/material";
 
 export const OrderInputArea = () => {
   const [search, setSearch] = useState(false);
   const [input, setInput] = useState("");
+  const [notes, setNotes] = useState<string>("");
   const [address, setAddress] = useState<any[]>([]);
 
   const url = `https://z4ryw4kny0.execute-api.ap-southeast-1.amazonaws.com/production/searchByAddress?address=`;
@@ -17,7 +18,15 @@ export const OrderInputArea = () => {
       const response = await axios.get(`${url}${i}`);
       setAddress(response.data.data);
       return;
-    } catch (error: any) {}
+    } catch (error: any) {
+      console.log(error.message);
+      return;
+    }
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const { value } = e.target;
+    setNotes(value);
   };
 
   const handleClick = (i: string) => {
@@ -38,11 +47,11 @@ export const OrderInputArea = () => {
   }, [input]);
 
   return (
-    <div className="w-[432px] p-[24px] flex flex-col gap-[40px] p-[24px]">
+    <div className="w-[432px] p-[24px] flex flex-col gap-[40px]">
       <div className="flex flex-col gap-[10px] w-full">
         <p className="text-[16px]">Хаяг аа оруулна уу</p>
         <div
-          className={`flex items-center h-[48px] pl-[8px] gap-[8px] rounded-[6px] ${input.length > 0 ? "bg-[#18BA51] text-white font-semibold" : ""}`}
+          className={`flex items-center h-[48px] pl-[8px] gap-[8px] rounded-[6px]  ${input.length > 0 ? "bg-[#18BA51] text-white font-semibold" : "bg-[#F7F7F8]"}`}
         >
           <IoLocationOutline size={26} />
           <input
@@ -81,8 +90,9 @@ export const OrderInputArea = () => {
         <div className="flex flex-col gap-[10px] w-full">
           <p>Нэмэлт мэдээлэл</p>
           <textarea
+            onChange={handleChange}
             placeholder="Орц, давхар, орцны код ..."
-            className="w-full outline-none ml-[8px] h-[112px] text-start resize-none bg-[#F7F7F8]"
+            className="w-full outline-none ml-[8px] h-[112px] text-start resize-none bg-[#F7F7F8] p-[6px] py-[12px] rounded-[6px]"
           />
         </div>
       </div>
@@ -91,7 +101,7 @@ export const OrderInputArea = () => {
           <p>Утасны дугаар*</p>
           <input
             placeholder="Утасны дугаараа оруулна уу"
-            className="w-full outline-none pl-[8px] bg-[#F7F7F8]"
+            className="w-full h-[48px] rounded-[6px] outline-none pl-[8px] bg-[#F7F7F8]"
           />
         </div>
       </div>

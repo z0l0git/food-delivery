@@ -5,25 +5,26 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { CartContent } from "./CartContent";
 import Link from "next/link";
 
+if (typeof window !== "undefined") {
+  // Perform localStorage action
+}
+const data: any = window?.localStorage.getItem("cartData") || "[]";
+const cartData = JSON.parse(data);
+
 export const CartBox = (props: any) => {
   const { handleClose } = props;
   const [total, setTotal] = useState(0);
   const [foodsInCart, setFoodsInCart] = useState([]);
 
-  const data: any = localStorage.getItem("cartData") || "[]";
-  const cartData = JSON.parse(data);
-
   useEffect(() => {
     setFoodsInCart(cartData);
-
     const sum = cartData.reduce(
       (acc: number, item: any) => acc + item.price * item.quantity,
       0
     );
     const totalPrice = sum.toFixed(2);
-    localStorage.setItem("totalPrice", totalPrice);
     setTotal(totalPrice);
-  }, [cartData]);
+  });
 
   return (
     <div className="h-screen bg-white z-30 right-0 w-[586px] flex flex-col justify-between rounded-l-md">
@@ -34,7 +35,7 @@ export const CartBox = (props: any) => {
           <p></p>
         </div>
         <div className="px-6">
-          {cartData.map((item: any) => (
+          {foodsInCart.map((item: any) => (
             <CartContent
               key={item._id}
               image={item.image}

@@ -4,7 +4,7 @@ import { OrderFoodContent } from "./OrderFoodContent";
 import { DataContext } from "../context/DataContext";
 
 export const OrderFoodBox = () => {
-  const { setOrderData } = useContext(DataContext);
+  // const { setOrderData } = useContext(DataContext);
   const data: string | null = localStorage.getItem("cartData") || "[]";
   const cartData = JSON.parse(data);
 
