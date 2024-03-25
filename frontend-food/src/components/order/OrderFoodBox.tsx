@@ -5,7 +5,8 @@ import { DataContext } from "../context/DataContext";
 
 export const OrderFoodBox = () => {
   // const { setOrderData } = useContext(DataContext);
-  const data: string | null = localStorage.getItem("cartData") || "[]";
+  const data: string | null =
+    (typeof window !== "undefined" && localStorage.getItem("cartData")) || "[]";
   const cartData = JSON.parse(data);
 
   return (
