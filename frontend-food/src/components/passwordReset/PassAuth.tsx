@@ -53,9 +53,12 @@ export const PassAuth = () => {
   const handleNext = async () => {
     if (pageCount === 0) {
       try {
-        const { data } = await axios.post("http://localhost:4000/user/reset", {
-          email: email,
-        });
+        const { data } = await axios.post(
+          "https://food-delivery-vy9i.onrender.com/user/reset",
+          {
+            email: email,
+          }
+        );
 
         if (data === "user not found") {
           setError("User not Found");
@@ -68,10 +71,13 @@ export const PassAuth = () => {
         console.log(e.message);
       }
     } else if (pageCount === 1) {
-      const { data } = await axios.post("http://localhost:4000/user/checkotp", {
-        email: email,
-        otp: otp,
-      });
+      const { data } = await axios.post(
+        "https://food-delivery-vy9i.onrender.com/user/checkotp",
+        {
+          email: email,
+          otp: otp,
+        }
+      );
       if (data === "success") {
         setError("");
         setPageCount(pageCount + 1);
@@ -83,10 +89,13 @@ export const PassAuth = () => {
         setError("passwords don't match");
         setPageCount(2);
       } else {
-        await axios.post("http://localhost:4000/user/password", {
-          email: email,
-          password: data.password,
-        });
+        await axios.post(
+          "https://food-delivery-vy9i.onrender.com/user/password",
+          {
+            email: email,
+            password: data.password,
+          }
+        );
         window.location.href = "/login";
         console.log("matched");
       }

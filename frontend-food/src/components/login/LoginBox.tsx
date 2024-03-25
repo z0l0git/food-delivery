@@ -35,7 +35,7 @@ export const LoginBox = (props: any) => {
   const handleSubmit = async () => {
     try {
       const { data: response } = await axios.post(
-        "http://localhost:4000/user/login",
+        "https://food-delivery-vy9i.onrender.com/user/login",
         data
       );
 

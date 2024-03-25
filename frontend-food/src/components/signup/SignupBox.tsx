@@ -69,7 +69,7 @@ export const SignupBox = () => {
       setErrorPassword("");
       try {
         const { data } = await axios.post(
-          "http://localhost:4000/user/signup",
+          "https://food-delivery-vy9i.onrender.com/user/signup",
           userData
         );
         if (

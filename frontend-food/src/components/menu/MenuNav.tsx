@@ -26,7 +26,7 @@ export const MenuNav = () => {
   const getCategoryItems = async (id: string) => {
     try {
       const { data } = await axios.get(
-        `http://localhost:4000/category/getOne/${id}`
+        `https://food-delivery-vy9i.onrender.com/category/getOne/${id}`
       );
       setCategoryItems(data.foodId);
     } catch (error: any) {

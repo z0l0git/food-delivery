@@ -97,7 +97,9 @@ export const DataProvider = ({ children }: any) => {
   useEffect(() => {
     const getFoods = async () => {
       try {
-        const { data } = await axios.get("http://localhost:4000/foods");
+        const { data } = await axios.get(
+          "https://food-delivery-vy9i.onrender.com/foods"
+        );
         setFoodData(data);
       } catch (error: any) {
         console.log("error getting foods");
@@ -108,7 +110,7 @@ export const DataProvider = ({ children }: any) => {
     const getCategory = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:4000/category/getAll"
+          "https://food-delivery-vy9i.onrender.com/category/getAll"
         );
 
         setCategory(data);
@@ -123,7 +125,7 @@ export const DataProvider = ({ children }: any) => {
         try {
           setLoading(true);
           const { data } = await axios.get(
-            "http://localhost:4000/users/refresh",
+            "https://food-delivery-vy9i.onrender.com/users/refresh",
             {
               headers: {
                 Authorization: `Bearer ${accessToken}`,

@@ -16,7 +16,9 @@ type FoodType = {
 
 const getFoods = async () => {
   try {
-    const { data } = await axios.get<FoodType[]>("http://localhost:4000/foods");
+    const { data } = await axios.get<FoodType[]>(
+      "https://food-delivery-vy9i.onrender.com/foods"
+    );
 
     return data;
   } catch (error: any) {
