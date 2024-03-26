@@ -10,7 +10,7 @@ export const OrderFoodBox = () => {
   const cartData = JSON.parse(data);
 
   return (
-    <>
+    <div>
       {cartData.map((item: any) => (
         <OrderFoodContent
           key={item._id}
@@ -22,6 +22,6 @@ export const OrderFoodBox = () => {
           _id={item._id}
         />
       ))}
-    </>
+    </div>
   );
 };
